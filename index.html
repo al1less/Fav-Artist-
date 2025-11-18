@@ -5,35 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fav Artist: ABBA y Dei V</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-            color: #333;
+        /* Definición de variables de color al estilo Spotify */
+        :root {
+            --fondo-oscuro-principal: #121212;
+            --fondo-tarjeta-claro: #181818;
+            --texto-claro: #FFFFFF;
+            --texto-secundario: #B3B3B3;
+            --acento-verde: #1DB955; /* Verde Spotify */
+            /* Colores específicos para títulos */
+            --acento-abba: #FFD700; /* Dorado para ABBA */
+            --acento-deiv: #00FFFF; /* Cian/Neón para Dei V */
         }
+
+        body {
+            /* Aplicamos el tema oscuro */
+            font-family: 'Arial', sans-serif;
+            margin: 0; 
+            background-color: var(--fondo-oscuro-principal);
+            color: var(--texto-claro);
+            padding: 40px; 
+        }
+        
         header {
             text-align: center;
-            padding: 20px;
-            background-color: #007acc; /* Color representativo de VS Code */
-            color: white;
-            border-radius: 8px 8px 0 0;
+            padding: 40px 20px;
+            /* Degradado llamativo en el header */
+            background-image: linear-gradient(to right, #00FFC0, var(--acento-verde), #007acc); 
+            color: var(--fondo-oscuro-principal);
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+            margin-bottom: 20px;
         }
+
+        header h1 {
+            font-size: 2.5em;
+            text-transform: uppercase;
+        }
+        
         .artista-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 30px;
             margin-top: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--fondo-tarjeta-claro);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
+        
+        .artista-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ************************************************* */
+        /* CÓDIGO ACTUALIZADO PARA TÍTULOS H2 MÁS GRANDES Y LLAMATIVOS */
+        /* ************************************************* */
         .artista-container h2 {
-            color: #007acc;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            font-size: 3.5em; 
+            font-weight: 900; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+            margin-top: 0.5em; 
+            padding-bottom: 15px; 
+            margin-bottom: 30px; 
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px; 
+            
+            color: var(--acento-verde); 
+            border-bottom: 5px solid var(--acento-verde); 
         }
+        
+        /* ABBA - Dorado */
+        .artista-container:first-of-type h2 {
+            color: var(--acento-abba); 
+            border-bottom-color: var(--acento-abba);
+            text-shadow: 0 0 15px var(--acento-abba); 
+        }
+
+        /* Dei V - Cian/Neón */
+        .artista-container:last-of-type h2 {
+            color: var(--acento-deiv); 
+            border-bottom-color: var(--acento-deiv);
+            text-shadow: 0 0 15px var(--acento-deiv); 
+        }
+        /* ************************************************* */
+
+        .info-col p {
+            color: var(--texto-secundario);
+        }
+        
+        .info-col h3 {
+            color: var(--texto-claro);
+            border-bottom: 1px solid var(--texto-secundario);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
         .contenido {
             display: flex;
             gap: 40px;
@@ -41,26 +110,81 @@
             max-width: 1000px;
             align-items: flex-start;
         }
+        
         .info-col {
             flex: 1;
         }
+        
         .foto-col {
-            flex: 0 0 250px; /* Ancho fijo para la columna de la foto */
+            flex: 0 0 250px;
             text-align: center;
         }
+        
         .foto-col img {
             width: 100%;
             height: auto;
+            aspect-ratio: 1 / 1; 
+            object-fit: cover;
             border-radius: 50%;
-            border: 5px solid #007acc;
+            border: 8px solid var(--acento-verde);
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.8);
         }
+        
+        /* Ajuste de borde de imagen para ABBA (Dorado) */
+        .artista-container:first-of-type .foto-col img {
+            border-color: var(--acento-abba);
+            box-shadow: 0 0 15px var(--acento-abba);
+        }
+        
+        /* Ajuste de borde de imagen para Dei V (Cian) */
+        .artista-container:last-of-type .foto-col img {
+            border-color: var(--acento-deiv);
+            box-shadow: 0 0 15px var(--acento-deiv);
+        }
+        
+        .foto-col p {
+            color: var(--texto-secundario);
+        }
+
         .cancion-fragmento {
             margin-top: 20px;
-            padding: 15px;
-            background-color: #e6f3ff;
-            border-left: 5px solid #007acc;
+            padding: 20px;
+            background-color: #282828; 
+            border-left: 5px solid var(--acento-verde);
             font-style: italic;
-            white-space: pre-wrap; /* Para mantener los saltos de línea del fragmento */
+            white-space: pre-wrap;
+            color: var(--texto-secundario);
+            border-radius: 8px;
+        }
+        
+        .cancion-fragmento audio {
+            width: 100%;
+            filter: hue-rotate(90deg) brightness(1.2); 
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            margin: 40px auto;
+            width: 80%;
+            background-image: linear-gradient(to right, transparent, var(--acento-verde), transparent);
+        }
+        
+        @media (max-width: 768px) {
+            .contenido {
+                flex-direction: column;
+                align-items: center;
+            }
+            .foto-col {
+                max-width: 200px;
+            }
+            body {
+                padding: 20px;
+            }
+             .artista-container h2 {
+                 font-size: 2.5em; 
+             }
         }
     </style>
 </head>
@@ -229,6 +353,7 @@ Pero si te quieres venir yo te hago el favor
 El que habló mal de mí, obligado es un hater
 
 Estoy mediano en esto, jaja
+
 Pero en verdad ni voy a roncar
 Dale replay a la canción
 Oye, un flavor nuevo que los tenías sosos, ¿oíste?
